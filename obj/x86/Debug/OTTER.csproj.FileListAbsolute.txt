@@ -11,3 +11,17 @@ C:\Users\Divna\Desktop\Vjezba 09 - prazno\OTTER\obj\x86\Debug\OTTER.Properties.R
 C:\Users\Divna\Desktop\Vjezba 09 - prazno\OTTER\obj\x86\Debug\OTTER.csproj.GenerateResource.Cache
 C:\Users\Divna\Desktop\Vjezba 09 - prazno\OTTER\obj\x86\Debug\OTTER.exe
 C:\Users\Divna\Desktop\Vjezba 09 - prazno\OTTER\obj\x86\Debug\OTTER.pdb
+C:\Users\Karlo\Desktop\OTTER\bin\Debug\backgrounds\back.jpg
+C:\Users\Karlo\Desktop\OTTER\bin\Debug\backgrounds\space2.jpg
+C:\Users\Karlo\Desktop\OTTER\bin\Debug\sprites\elf.png
+C:\Users\Karlo\Desktop\OTTER\bin\Debug\OTTER.exe.config
+C:\Users\Karlo\Desktop\OTTER\bin\Debug\OTTER.xml
+C:\Users\Karlo\Desktop\OTTER\bin\Debug\OTTER.exe
+C:\Users\Karlo\Desktop\OTTER\bin\Debug\OTTER.pdb
+C:\Users\Karlo\Desktop\OTTER\obj\x86\Debug\OTTER.csproj.AssemblyReference.cache
+C:\Users\Karlo\Desktop\OTTER\obj\x86\Debug\OTTER.BGL.resources
+C:\Users\Karlo\Desktop\OTTER\obj\x86\Debug\OTTER.Properties.Resources.resources
+C:\Users\Karlo\Desktop\OTTER\obj\x86\Debug\OTTER.csproj.GenerateResource.cache
+C:\Users\Karlo\Desktop\OTTER\obj\x86\Debug\OTTER.csproj.CoreCompileInputs.cache
+C:\Users\Karlo\Desktop\OTTER\obj\x86\Debug\OTTER.exe
+C:\Users\Karlo\Desktop\OTTER\obj\x86\Debug\OTTER.pdb
