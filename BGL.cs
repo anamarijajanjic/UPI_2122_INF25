@@ -557,6 +557,11 @@ namespace OTTER
         Prepreka prepreka2;
 
         Zivot noviZivot;
+
+        Sprite triZivota;
+        Sprite dvaZivota;
+        Sprite jedanZivot;
+        Sprite nulaZivota;
         
         Sprite oblak;
         Sprite stablo;
@@ -572,6 +577,26 @@ namespace OTTER
             setPictureLayout("stretch");
 
             //2. add sprites
+            triZivota = new Sprite("sprites\\3srca.png", 530, 30);
+            Game.AddSprite(triZivota);
+            triZivota.SetSize(25);
+            triZivota.SetVisible(false);
+
+            dvaZivota = new Sprite("sprites\\2srca.png", 530, 30);
+            Game.AddSprite(dvaZivota);
+            dvaZivota.SetSize(25);
+            dvaZivota.SetVisible(false);
+
+            jedanZivot = new Sprite("sprites\\1srce.png", 530, 30);
+            Game.AddSprite(jedanZivot);
+            jedanZivot.SetSize(25);
+            jedanZivot.SetVisible(false);
+
+            nulaZivota = new Sprite("sprites\\0srca.png", 530, 30);
+            Game.AddSprite(nulaZivota);
+            nulaZivota.SetSize(25);
+            nulaZivota.SetVisible(false);
+
             oblak = new Sprite("sprites\\oblak.png", 250, 80);
             Game.AddSprite(oblak);
             oblak.SetSize(60);
@@ -679,6 +704,8 @@ namespace OTTER
             }
             return 0;
         }
+
+
         private int IgraPokrenuta()
         {
             while (START)
@@ -726,10 +753,12 @@ namespace OTTER
                     Wait(1);
                     paco.DiraSrce = false;
                 }
+                Game.StartScript(PrikazZivota);
                 paco.RacunajRezultat();
             }
             return 0;
         }
+
         private int Skoci()
         {
             while (START)
@@ -811,6 +840,44 @@ namespace OTTER
             }
             return 0;
         }
+
+        private int PrikazZivota()
+        {
+            while (START)
+            {
+                if (paco.Zdravlje == 0)
+                {
+                    nulaZivota.SetVisible(true);
+                    jedanZivot.SetVisible(false);
+                    dvaZivota.SetVisible(false);
+                    triZivota.SetVisible(false);
+                }
+                if (paco.Zdravlje == 1)
+                {
+                    nulaZivota.SetVisible(false);
+                    jedanZivot.SetVisible(true);
+                    dvaZivota.SetVisible(false);
+                    triZivota.SetVisible(false);
+                }
+                if (paco.Zdravlje == 2)
+                {
+                    nulaZivota.SetVisible(false);
+                    jedanZivot.SetVisible(false);
+                    dvaZivota.SetVisible(true);
+                    triZivota.SetVisible(false);
+                }
+                if (paco.Zdravlje == 3)
+                {
+                    nulaZivota.SetVisible(false);
+                    jedanZivot.SetVisible(false);
+                    dvaZivota.SetVisible(false);
+                    triZivota.SetVisible(true);
+                }
+                break;
+            }
+            return 0;
+        }
+        
         private int PomiciPozadinu()
         {
             while (true)
@@ -829,6 +896,7 @@ namespace OTTER
             }
             return 0;
         }
+
         private int IspaliPrepreku1()
         {
             while (START)
@@ -844,6 +912,7 @@ namespace OTTER
             }
             return 0;
         }
+
         private int IspaliPrepreku2()
         {
             while (START)
@@ -859,6 +928,7 @@ namespace OTTER
             }
             return 0;
         }
+
         private int IspaliZeton1()
         {
             zeton1.SetVisible(true);
@@ -874,6 +944,7 @@ namespace OTTER
             }
             return 0;
         }
+
         private int IspaliZeton2()
         {
             zeton2.SetVisible(true);
@@ -889,6 +960,7 @@ namespace OTTER
             }
             return 0;
         }
+
         private int IspaliSrce()
         {
             noviZivot.SetVisible(true);
@@ -904,6 +976,7 @@ namespace OTTER
             }
             return 0;
         }
+
         private int PrviDio()
         {
             while (START)
@@ -928,6 +1001,7 @@ namespace OTTER
             }
             return 0;
         }
+
         private int DrugiDio()
         {
             while (START)
@@ -944,6 +1018,7 @@ namespace OTTER
             }
             return 0;
         }
+
         private int Generator()
         {
             while (paco.Zdravlje > 0)
@@ -955,7 +1030,7 @@ namespace OTTER
             }
             return 0;
         }
-        
+
         /* ------------ GAME CODE END ------------ */
 
     }
