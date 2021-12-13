@@ -548,9 +548,16 @@ namespace OTTER
 
         /* Game variables */
 
-        
         GlavniLik paco;
 
+        Zeton zeton1;
+        Zeton zeton2;
+
+        Prepreka prepreka1;
+        Prepreka prepreka2;
+
+        Zivot noviZivot;
+        
         Sprite oblak;
         Sprite stablo;
         Sprite priprema;
@@ -565,7 +572,6 @@ namespace OTTER
             setPictureLayout("stretch");
 
             //2. add sprites
-            
             oblak = new Sprite("sprites\\oblak.png", 250, 80);
             Game.AddSprite(oblak);
             oblak.SetSize(60);
@@ -583,11 +589,43 @@ namespace OTTER
             priprema.SetSize(100);
             priprema.SetVisible(false);
 
+            zeton1 = new Zeton("sprites\\zeton.png", 800, 300);
+            Game.AddSprite(zeton1);
+            zeton1.SetSize(10);
+            zeton1.SetVisible(false);
+            zeton1.SetHeading(270);
+
+            zeton2 = new Zeton("sprites\\zeton.png", 800, 300);
+            Game.AddSprite(zeton2);
+            zeton2.SetSize(10);
+            zeton2.SetVisible(false);
+            zeton2.SetHeading(270);
+
+            prepreka1 = new Prepreka("sprites\\casa.png", 800, 300);
+            Game.AddSprite(prepreka1);
+            prepreka1.SetSize(10);
+            prepreka1.AddCostumes("sprites\\kamen.png");
+            prepreka1.SetVisible(false);
+            prepreka1.SetHeading(270);
+
+            prepreka2 = new Prepreka("sprites\\kamen.png", 800, 300);
+            Game.AddSprite(prepreka2);
+            prepreka2.SetSize(10);
+            prepreka2.AddCostumes("sprites\\casa.png");
+            prepreka2.SetVisible(false);
+            prepreka2.SetHeading(270);
+
+            noviZivot = new Zivot("sprites\\srce.png", 800, 300);
+            Game.AddSprite(noviZivot);
+            noviZivot.SetSize(10);
+            noviZivot.SetVisible(false);
+            noviZivot.SetHeading(270);
+
             paco = new GlavniLik("sprites\\glavnilik.png", 50, 235);
             Game.AddSprite(paco);
             paco.SetSize(25);
             paco.SetVisible(false);
-            
+
             //3. scripts that start
             Game.StartScript(PocetakIgre);
         }
@@ -605,7 +643,12 @@ namespace OTTER
                     oblak.SetVisible(true);
                     stablo.SetVisible(true);
                     priprema.SetVisible(true);
-                    
+                    prepreka1.SetVisible(true);
+                    prepreka2.SetVisible(true);
+                    zeton1.SetVisible(true);
+                    zeton2.SetVisible(true);
+                    noviZivot.SetVisible(true);
+
                     lblKonacniBodovi.Invoke((MethodInvoker)(() => lblKonacniBodovi.Visible = false));
                     lblZetoni.Invoke((MethodInvoker)(() => lblZetoni.Visible = true));
                     lblVrijeme.Invoke((MethodInvoker)(() => lblVrijeme.Visible = true));
@@ -630,27 +673,63 @@ namespace OTTER
                     Wait(0.5);
                     Game.StartScript(IgraPokrenuta);
                     Game.StartScript(PomiciPozadinu);
+                    Game.StartScript(Generator);
                     break;
                 }
             }
             return 0;
         }
-
-        
         private int IgraPokrenuta()
         {
             while (START)
             {
+                if (paco.Zdravlje == 0)
+                {
+                    Wait(3);
+                }
                 if (sensing.KeyPressed(Keys.Space) && paco.Skok == true)
                 {
                     paco.Skok = false;
                     Game.StartScript(Skoci);
                 }
+                if (paco.TouchingSprite(zeton1) && paco.DiraZeton == false)
+                {
+                    paco.DiraZeton = true;
+                    zeton1.SetVisible(false);
+                    paco.DodajZetoneBezUdarca();
+                    paco.SkupljeniZetoni += zeton1.Vrijednost;
+                    Wait(1);
+                    paco.DiraZeton = false;
+                }
+                if (paco.TouchingSprite(zeton2) && paco.DiraZeton == false)
+                {
+                    paco.DiraZeton = true;
+                    zeton2.SetVisible(false);
+                    paco.DodajZetoneBezUdarca();
+                    paco.SkupljeniZetoni += zeton2.Vrijednost;
+                    Wait(1);
+                    paco.DiraZeton = false;
+                }
+                if ((paco.TouchingSprite(prepreka1) || paco.TouchingSprite(prepreka2)) && (paco.DiraPrepreku == false))
+                {
+                    paco.DiraPrepreku = true;
+                    paco.VratiZetoneBezUdarca();
+                    paco.Zdravlje -= prepreka1.Ozljeda;
+                    Wait(1);
+                    paco.DiraPrepreku = false;
+                }
+                if (paco.TouchingSprite(noviZivot) && paco.DiraSrce == false)
+                {
+                    paco.DiraSrce = true;
+                    noviZivot.SetVisible(false);
+                    paco.Zdravlje += noviZivot.Regeneracija;
+                    Wait(1);
+                    paco.DiraSrce = false;
+                }
+                paco.RacunajRezultat();
             }
             return 0;
         }
-        
-        
         private int Skoci()
         {
             while (START)
@@ -732,7 +811,6 @@ namespace OTTER
             }
             return 0;
         }
-        
         private int PomiciPozadinu()
         {
             while (true)
@@ -751,7 +829,133 @@ namespace OTTER
             }
             return 0;
         }
-
+        private int IspaliPrepreku1()
+        {
+            while (START)
+            {
+                prepreka1.MoveSteps(4);
+                if (prepreka1.X == -200)
+                {
+                    prepreka1.X = 800;
+                    prepreka1.NextCostume();
+                    break;
+                }
+                Wait(0.01);
+            }
+            return 0;
+        }
+        private int IspaliPrepreku2()
+        {
+            while (START)
+            {
+                prepreka2.MoveSteps(4);
+                if (prepreka2.X == -200)
+                {
+                    prepreka2.X = 800;
+                    prepreka2.NextCostume();
+                    break;
+                }
+                Wait(0.01);
+            }
+            return 0;
+        }
+        private int IspaliZeton1()
+        {
+            zeton1.SetVisible(true);
+            while (START)
+            {
+                zeton1.MoveSteps(4);
+                if (zeton1.X == -200)
+                {
+                    zeton1.X = 800;
+                    break;
+                }
+                Wait(0.01);
+            }
+            return 0;
+        }
+        private int IspaliZeton2()
+        {
+            zeton2.SetVisible(true);
+            while (START)
+            {
+                zeton2.MoveSteps(4);
+                if (zeton2.X == -200)
+                {
+                    zeton2.X = 800;
+                    break;
+                }
+                Wait(0.01);
+            }
+            return 0;
+        }
+        private int IspaliSrce()
+        {
+            noviZivot.SetVisible(true);
+            while (START)
+            {
+                noviZivot.MoveSteps(4);
+                if (noviZivot.X == -200)
+                {
+                    noviZivot.X = 800;
+                    break;
+                }
+                Wait(0.01);
+            }
+            return 0;
+        }
+        private int PrviDio()
+        {
+            while (START)
+            {
+                if (paco.SkupljeniZetoniBezUdarca == 25)
+                {
+                    Game.StartScript(IspaliSrce);
+                    paco.VratiZetoneBezUdarca();
+                }
+                else
+                {
+                    if (Staticka.Random1() == 1)
+                    {
+                        Game.StartScript(IspaliZeton1);
+                    }
+                    else if (Staticka.Random1() == 2)
+                    {
+                        Game.StartScript(IspaliPrepreku1);
+                    }
+                }
+                break;
+            }
+            return 0;
+        }
+        private int DrugiDio()
+        {
+            while (START)
+            {
+                if (Staticka.Random2() == 1)
+                {
+                    Game.StartScript(IspaliZeton2);
+                }
+                else if (Staticka.Random2() == 2)
+                {
+                    Game.StartScript(IspaliPrepreku2);
+                }
+                break;
+            }
+            return 0;
+        }
+        private int Generator()
+        {
+            while (paco.Zdravlje > 0)
+            {
+                Game.StartScript(PrviDio);
+                Wait(2.25);
+                Game.StartScript(DrugiDio);
+                Wait(2.25);
+            }
+            return 0;
+        }
+        
         /* ------------ GAME CODE END ------------ */
 
     }

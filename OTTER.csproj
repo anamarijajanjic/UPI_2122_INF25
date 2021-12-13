@@ -60,10 +60,14 @@
     <Compile Include="GameClass.cs" />
     <Compile Include="GameOptions.cs" />
     <Compile Include="GlavniLik.cs" />
+    <Compile Include="Prepreka.cs" />
     <Compile Include="Sensing.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sprite.cs" />
+    <Compile Include="Staticka.cs" />
+    <Compile Include="Zeton.cs" />
+    <Compile Include="Zivot.cs" />
     <EmbeddedResource Include="BGL.resx">
       <DependentUpon>BGL.cs</DependentUpon>
     </EmbeddedResource>
