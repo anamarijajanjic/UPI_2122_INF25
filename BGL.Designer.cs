@@ -34,6 +34,9 @@
             this.syncRate = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
+            this.lblVrijeme = new System.Windows.Forms.Label();
+            this.lblZetoni = new System.Windows.Forms.Label();
+            this.lblKonacniBodovi = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // syncRate
@@ -42,7 +45,7 @@
             this.syncRate.BackColor = System.Drawing.Color.Transparent;
             this.syncRate.Location = new System.Drawing.Point(12, 394);
             this.syncRate.Name = "syncRate";
-            this.syncRate.Size = new System.Drawing.Size(55, 39);
+            this.syncRate.Size = new System.Drawing.Size(71, 52);
             this.syncRate.TabIndex = 0;
             this.syncRate.Text = "60";
             this.syncRate.Visible = false;
@@ -57,13 +60,46 @@
             this.timer2.Interval = 250;
             this.timer2.Tick += new System.EventHandler(this.updateFrameRate);
             // 
+            // lblVrijeme
+            // 
+            this.lblVrijeme.AutoSize = true;
+            this.lblVrijeme.BackColor = System.Drawing.Color.Transparent;
+            this.lblVrijeme.Font = new System.Drawing.Font("Consolas", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVrijeme.Location = new System.Drawing.Point(404, 394);
+            this.lblVrijeme.Name = "lblVrijeme";
+            this.lblVrijeme.Size = new System.Drawing.Size(0, 51);
+            this.lblVrijeme.TabIndex = 1;
+            // 
+            // lblZetoni
+            // 
+            this.lblZetoni.AutoSize = true;
+            this.lblZetoni.BackColor = System.Drawing.Color.Transparent;
+            this.lblZetoni.Font = new System.Drawing.Font("Consolas", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblZetoni.Location = new System.Drawing.Point(12, 394);
+            this.lblZetoni.Name = "lblZetoni";
+            this.lblZetoni.Size = new System.Drawing.Size(0, 51);
+            this.lblZetoni.TabIndex = 2;
+            // 
+            // lblKonacniBodovi
+            // 
+            this.lblKonacniBodovi.AutoSize = true;
+            this.lblKonacniBodovi.BackColor = System.Drawing.Color.Transparent;
+            this.lblKonacniBodovi.Font = new System.Drawing.Font("Consolas", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblKonacniBodovi.Location = new System.Drawing.Point(156, 433);
+            this.lblKonacniBodovi.Name = "lblKonacniBodovi";
+            this.lblKonacniBodovi.Size = new System.Drawing.Size(0, 47);
+            this.lblKonacniBodovi.TabIndex = 3;
+            // 
             // BGL
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(20F, 39F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(26F, 52F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(700, 498);
+            this.Controls.Add(this.lblKonacniBodovi);
+            this.Controls.Add(this.lblZetoni);
+            this.Controls.Add(this.lblVrijeme);
             this.Controls.Add(this.syncRate);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -92,6 +128,9 @@
         private System.Windows.Forms.Label syncRate;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Timer timer2;
+        private System.Windows.Forms.Label lblVrijeme;
+        private System.Windows.Forms.Label lblZetoni;
+        private System.Windows.Forms.Label lblKonacniBodovi;
     }
 }
 

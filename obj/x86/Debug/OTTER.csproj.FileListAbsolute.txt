@@ -11,9 +11,6 @@ C:\Users\Divna\Desktop\Vjezba 09 - prazno\OTTER\obj\x86\Debug\OTTER.Properties.R
 C:\Users\Divna\Desktop\Vjezba 09 - prazno\OTTER\obj\x86\Debug\OTTER.csproj.GenerateResource.Cache
 C:\Users\Divna\Desktop\Vjezba 09 - prazno\OTTER\obj\x86\Debug\OTTER.exe
 C:\Users\Divna\Desktop\Vjezba 09 - prazno\OTTER\obj\x86\Debug\OTTER.pdb
-C:\Users\Karlo\Desktop\OTTER\bin\Debug\backgrounds\back.jpg
-C:\Users\Karlo\Desktop\OTTER\bin\Debug\backgrounds\space2.jpg
-C:\Users\Karlo\Desktop\OTTER\bin\Debug\sprites\elf.png
 C:\Users\Karlo\Desktop\OTTER\bin\Debug\OTTER.exe.config
 C:\Users\Karlo\Desktop\OTTER\bin\Debug\OTTER.xml
 C:\Users\Karlo\Desktop\OTTER\bin\Debug\OTTER.exe
@@ -25,3 +22,18 @@ C:\Users\Karlo\Desktop\OTTER\obj\x86\Debug\OTTER.csproj.GenerateResource.cache
 C:\Users\Karlo\Desktop\OTTER\obj\x86\Debug\OTTER.csproj.CoreCompileInputs.cache
 C:\Users\Karlo\Desktop\OTTER\obj\x86\Debug\OTTER.exe
 C:\Users\Karlo\Desktop\OTTER\obj\x86\Debug\OTTER.pdb
+C:\Users\Karlo\Desktop\OTTER\bin\Debug\backgrounds\pozadina.png
+C:\Users\Karlo\Desktop\OTTER\bin\Debug\backgrounds\pozadinaIzbornik.png
+C:\Users\Karlo\Desktop\OTTER\bin\Debug\backgrounds\pozadinaKraj.png
+C:\Users\Karlo\Desktop\OTTER\bin\Debug\sprites\0srca.png
+C:\Users\Karlo\Desktop\OTTER\bin\Debug\sprites\1srce.png
+C:\Users\Karlo\Desktop\OTTER\bin\Debug\sprites\2srca.png
+C:\Users\Karlo\Desktop\OTTER\bin\Debug\sprites\3srca.png
+C:\Users\Karlo\Desktop\OTTER\bin\Debug\sprites\casa.png
+C:\Users\Karlo\Desktop\OTTER\bin\Debug\sprites\glavnilik.png
+C:\Users\Karlo\Desktop\OTTER\bin\Debug\sprites\kamen.png
+C:\Users\Karlo\Desktop\OTTER\bin\Debug\sprites\oblak.png
+C:\Users\Karlo\Desktop\OTTER\bin\Debug\sprites\priprema.png
+C:\Users\Karlo\Desktop\OTTER\bin\Debug\sprites\srce.png
+C:\Users\Karlo\Desktop\OTTER\bin\Debug\sprites\stablo.png
+C:\Users\Karlo\Desktop\OTTER\bin\Debug\sprites\zeton.png

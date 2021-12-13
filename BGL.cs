@@ -548,41 +548,104 @@ namespace OTTER
 
         /* Game variables */
 
+        Sprite oblak;
+        Sprite stablo;
+        Sprite priprema;
         
         /* Initialization */
-
         
         private void SetupGame()
         {
             //1. setup stage
-            SetStageTitle("PMF");
-            //setBackgroundColor(Color.WhiteSmoke);            
-            setBackgroundPicture("backgrounds\\back.jpg");
-            //none, tile, stretch, center, zoom
+            SetStageTitle("DuckDuckRun");          
+            setBackgroundPicture("backgrounds\\pozadinaIzbornik.png");
             setPictureLayout("stretch");
 
             //2. add sprites
-        
-        
+            
+            oblak = new Sprite("sprites\\oblak.png", 250, 80);
+            Game.AddSprite(oblak);
+            oblak.SetSize(60);
+            oblak.SetVisible(false);
+            oblak.SetHeading(270);
+
+            stablo = new Sprite("sprites\\stablo.png", 800, 200);
+            Game.AddSprite(stablo);
+            stablo.SetSize(40);
+            stablo.SetVisible(false);
+            stablo.SetHeading(270);
+
+            priprema = new Sprite("sprites\\priprema.png", 0, 0);
+            Game.AddSprite(priprema);
+            priprema.SetSize(100);
+            priprema.SetVisible(false);
+
             //3. scripts that start
+            Game.StartScript(PocetakIgre);
         }
 
         /* Scripts */
 
-        private int Metoda()
+        private int PocetakIgre()
         {
-            while (START) //ili neki drugi uvjet
+            while (START)
             {
+                if (sensing.KeyPressed(Keys.N))
+                {
+                    setBackgroundPicture("backgrounds\\pozadina.png");
+                    oblak.SetVisible(true);
+                    stablo.SetVisible(true);
+                    priprema.SetVisible(true);
+                    
+                    lblKonacniBodovi.Invoke((MethodInvoker)(() => lblKonacniBodovi.Visible = false));
+                    lblZetoni.Invoke((MethodInvoker)(() => lblZetoni.Visible = true));
+                    lblVrijeme.Invoke((MethodInvoker)(() => lblVrijeme.Visible = true));
 
-                Wait(0.1);
+                    Game.StartScript(Priprema);
+                    break;
+                }
+                else if (sensing.KeyPressed(Keys.E))
+                {
+                    Application.Exit();
+                }
+            }
+            return 0;
+        }
+        private int Priprema()
+        {
+            while (START)
+            {
+                if (sensing.KeyPressed(Keys.Space))
+                {
+                    priprema.SetVisible(false);
+                    Wait(0.5);
+                    Game.StartScript(PomiciPozadinu);
+                    break;
+                }
             }
             return 0;
         }
 
-
+        private int PomiciPozadinu()
+        {
+            while (true)
+            {
+                stablo.MoveSteps(3);
+                if (stablo.X <= -200)
+                {
+                    stablo.X = 800;
+                }
+                oblak.MoveSteps(2);
+                if (oblak.X <= -200)
+                {
+                    oblak.X = 800;
+                }
+                Wait(0.03);
+            }
+            return 0;
+        }
 
         /* ------------ GAME CODE END ------------ */
-
 
     }
 }
