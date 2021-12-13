@@ -79,9 +79,9 @@ namespace OTTER
             Graphics g = e.Graphics;
 
             try
-            {                
+            {
                 foreach (Sprite sprite in allSprites)
-                {                    
+                {
                     if (sprite != null)
                         if (sprite.Show == true)
                         {
@@ -145,7 +145,7 @@ namespace OTTER
         private void mouseDown(object sender, MouseEventArgs e)
         {
             //sensing.MouseDown = true;
-            sensing.MouseDown = true;            
+            sensing.MouseDown = true;
         }
 
         private void mouseUp(object sender, MouseEventArgs e)
@@ -548,16 +548,19 @@ namespace OTTER
 
         /* Game variables */
 
+        
+        GlavniLik paco;
+
         Sprite oblak;
         Sprite stablo;
         Sprite priprema;
-        
+
         /* Initialization */
-        
+
         private void SetupGame()
         {
             //1. setup stage
-            SetStageTitle("DuckDuckRun");          
+            SetStageTitle("DuckDuckRun");
             setBackgroundPicture("backgrounds\\pozadinaIzbornik.png");
             setPictureLayout("stretch");
 
@@ -580,6 +583,11 @@ namespace OTTER
             priprema.SetSize(100);
             priprema.SetVisible(false);
 
+            paco = new GlavniLik("sprites\\glavnilik.png", 50, 235);
+            Game.AddSprite(paco);
+            paco.SetSize(25);
+            paco.SetVisible(false);
+            
             //3. scripts that start
             Game.StartScript(PocetakIgre);
         }
@@ -593,6 +601,7 @@ namespace OTTER
                 if (sensing.KeyPressed(Keys.N))
                 {
                     setBackgroundPicture("backgrounds\\pozadina.png");
+                    paco.SetVisible(true);
                     oblak.SetVisible(true);
                     stablo.SetVisible(true);
                     priprema.SetVisible(true);
@@ -619,6 +628,7 @@ namespace OTTER
                 {
                     priprema.SetVisible(false);
                     Wait(0.5);
+                    Game.StartScript(IgraPokrenuta);
                     Game.StartScript(PomiciPozadinu);
                     break;
                 }
@@ -626,6 +636,103 @@ namespace OTTER
             return 0;
         }
 
+        
+        private int IgraPokrenuta()
+        {
+            while (START)
+            {
+                if (sensing.KeyPressed(Keys.Space) && paco.Skok == true)
+                {
+                    paco.Skok = false;
+                    Game.StartScript(Skoci);
+                }
+            }
+            return 0;
+        }
+        
+        
+        private int Skoci()
+        {
+            while (START)
+            {
+                for (int i = 0; i < 1; i++)
+                {
+                    paco.Y -= 7;
+                    Wait(0.01);
+                }
+                for (int i = 0; i < 2; i++)
+                {
+                    paco.Y -= 6;
+                    Wait(0.01);
+                }
+                for (int i = 0; i < 4; i++)
+                {
+                    paco.Y -= 5;
+                    Wait(0.01);
+                }
+                for (int i = 0; i < 6; i++)
+                {
+                    paco.Y -= 4;
+                    Wait(0.01);
+                }
+                for (int i = 0; i < 7; i++)
+                {
+                    paco.Y -= 3;
+                    Wait(0.01);
+                }
+                for (int i = 0; i < 8; i++)
+                {
+                    paco.Y -= 2;
+                    Wait(0.01);
+                }
+                for (int i = 0; i < 10; i++)
+                {
+                    paco.Y -= 1;
+                    Wait(0.01);
+                }
+
+                for (int i = 0; i < 10; i++)
+                {
+                    paco.Y += 1;
+                    Wait(0.01);
+                }
+                for (int i = 0; i < 8; i++)
+                {
+                    paco.Y += 2;
+                    Wait(0.01);
+                }
+                for (int i = 0; i < 7; i++)
+                {
+                    paco.Y += 3;
+                    Wait(0.01);
+                }
+                for (int i = 0; i < 6; i++)
+                {
+                    paco.Y += 4;
+                    Wait(0.01);
+                }
+                for (int i = 0; i < 4; i++)
+                {
+                    paco.Y += 5;
+                    Wait(0.01);
+                }
+                for (int i = 0; i < 2; i++)
+                {
+                    paco.Y += 6;
+                    Wait(0.01);
+                }
+                for (int i = 0; i < 1; i++)
+                {
+                    paco.Y += 7;
+                    Wait(0.01);
+                }
+
+                paco.Skok = true;
+                break;
+            }
+            return 0;
+        }
+        
         private int PomiciPozadinu()
         {
             while (true)

@@ -59,6 +59,7 @@
     </Compile>
     <Compile Include="GameClass.cs" />
     <Compile Include="GameOptions.cs" />
+    <Compile Include="GlavniLik.cs" />
     <Compile Include="Sensing.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
