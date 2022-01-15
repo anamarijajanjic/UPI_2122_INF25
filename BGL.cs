@@ -562,7 +562,7 @@ namespace OTTER
         Sprite dvaZivota;
         Sprite jedanZivot;
         Sprite nulaZivota;
-        
+
         Sprite oblak;
         Sprite stablo;
         Sprite priprema;
@@ -651,6 +651,10 @@ namespace OTTER
             paco.SetSize(25);
             paco.SetVisible(false);
 
+            lblZetoni.Visible = false;
+            lblVrijeme.Visible = false;
+            lblKonacniBodovi.Visible = false;
+
             //3. scripts that start
             Game.StartScript(PocetakIgre);
         }
@@ -699,20 +703,23 @@ namespace OTTER
                     Game.StartScript(IgraPokrenuta);
                     Game.StartScript(PomiciPozadinu);
                     Game.StartScript(Generator);
+                    Game.StartScript(Stoperica);
                     break;
                 }
             }
             return 0;
         }
-
-
         private int IgraPokrenuta()
         {
             while (START)
             {
+
+                lblZetoni.Invoke((MethodInvoker)(() => lblZetoni.Text = Staticka.Zetoni + paco.SkupljeniZetoni.ToString()));
+
                 if (paco.Zdravlje == 0)
                 {
                     Wait(3);
+                    Game.StartScript(KrajIgre);
                 }
                 if (sensing.KeyPressed(Keys.Space) && paco.Skok == true)
                 {
@@ -741,6 +748,7 @@ namespace OTTER
                 {
                     paco.DiraPrepreku = true;
                     paco.VratiZetoneBezUdarca();
+                    Game.StartScript(Treperi);
                     paco.Zdravlje -= prepreka1.Ozljeda;
                     Wait(1);
                     paco.DiraPrepreku = false;
@@ -758,7 +766,6 @@ namespace OTTER
             }
             return 0;
         }
-
         private int Skoci()
         {
             while (START)
@@ -840,7 +847,21 @@ namespace OTTER
             }
             return 0;
         }
-
+        private int Treperi()
+        {
+            while (START)
+            {
+                for (int i = 0; i < 6; i++)
+                {
+                    paco.SetVisible(false);
+                    Wait(0.1);
+                    paco.SetVisible(true);
+                    Wait(0.1);
+                }
+                break;
+            }
+            return 0;
+        }
         private int PrikazZivota()
         {
             while (START)
@@ -877,10 +898,25 @@ namespace OTTER
             }
             return 0;
         }
-        
+        private int Stoperica()
+        {
+            while (START)
+            {
+                int i = 0;
+                while (paco.Zdravlje > 0)
+                {
+                    lblVrijeme.Invoke((MethodInvoker)(() => lblVrijeme.Text = Staticka.Vrijeme + i.ToString() + " s"));
+                    paco.DodajSekundu();
+                    Wait(1);
+                    i++;
+                }
+            }
+            return 0;
+        }
+
         private int PomiciPozadinu()
         {
-            while (true)
+            while (paco.Zdravlje > 0)
             {
                 stablo.MoveSteps(3);
                 if (stablo.X <= -200)
@@ -912,7 +948,6 @@ namespace OTTER
             }
             return 0;
         }
-
         private int IspaliPrepreku2()
         {
             while (START)
@@ -928,7 +963,6 @@ namespace OTTER
             }
             return 0;
         }
-
         private int IspaliZeton1()
         {
             zeton1.SetVisible(true);
@@ -944,7 +978,6 @@ namespace OTTER
             }
             return 0;
         }
-
         private int IspaliZeton2()
         {
             zeton2.SetVisible(true);
@@ -960,7 +993,6 @@ namespace OTTER
             }
             return 0;
         }
-
         private int IspaliSrce()
         {
             noviZivot.SetVisible(true);
@@ -976,7 +1008,6 @@ namespace OTTER
             }
             return 0;
         }
-
         private int PrviDio()
         {
             while (START)
@@ -1001,7 +1032,6 @@ namespace OTTER
             }
             return 0;
         }
-
         private int DrugiDio()
         {
             while (START)
@@ -1018,7 +1048,6 @@ namespace OTTER
             }
             return 0;
         }
-
         private int Generator()
         {
             while (paco.Zdravlje > 0)
@@ -1027,6 +1056,39 @@ namespace OTTER
                 Wait(2.25);
                 Game.StartScript(DrugiDio);
                 Wait(2.25);
+            }
+            return 0;
+        }
+
+        private int KrajIgre()
+        {
+            while (true)
+            {
+                START = false;
+                setBackgroundPicture("backgrounds\\pozadinaKraj.png");
+                paco.SetVisible(false);
+                oblak.SetVisible(false);
+                stablo.SetVisible(false);
+                priprema.SetVisible(false);
+                prepreka1.SetVisible(false);
+                prepreka2.SetVisible(false);
+                zeton1.SetVisible(false);
+                zeton2.SetVisible(false);
+                noviZivot.SetVisible(false);
+
+                nulaZivota.SetVisible(false);
+                jedanZivot.SetVisible(false);
+                dvaZivota.SetVisible(false);
+                triZivota.SetVisible(false);
+
+                lblZetoni.Invoke((MethodInvoker)(() => lblZetoni.Visible = false));
+                lblVrijeme.Invoke((MethodInvoker)(() => lblVrijeme.Visible = false));
+                lblKonacniBodovi.Invoke((MethodInvoker)(() => lblKonacniBodovi.Visible = true));
+                lblKonacniBodovi.Invoke((MethodInvoker)(() => lblKonacniBodovi.Text = Staticka.Ukupno + Math.Round(paco.UkupniBodovi, 5).ToString() + " BTC"));
+
+                Wait(7);
+                Application.Restart();
+                break;
             }
             return 0;
         }
