@@ -160,9 +160,10 @@ namespace OTTER
         {
             this.SkupljeniZetoniBezUdarca += 1;
         }
-        public void VratiZetoneBezUdarca()
+        public int VratiZetoneBezUdarca()
         {
             this.SkupljeniZetoniBezUdarca = 0;
+            return SkupljeniZetoniBezUdarca;
         }
         public double RacunajRezultat()
         {

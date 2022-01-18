@@ -548,7 +548,7 @@ namespace OTTER
 
         /* Game variables */
 
-        GlavniLik paco;
+        public GlavniLik paco;
 
         Zeton zeton1;
         Zeton zeton2;
@@ -654,9 +654,43 @@ namespace OTTER
             lblZetoni.Visible = false;
             lblVrijeme.Visible = false;
             lblKonacniBodovi.Visible = false;
-
             //3. scripts that start
             Game.StartScript(PocetakIgre);
+
+
+             using (StreamReader sr = File.OpenText("dat.txt"))
+                {
+                    string linija;
+                    List<double> rezultati = new List<double>();
+                    while ((linija = sr.ReadLine()) != null)
+                    {
+                        double br = double.Parse(linija);
+                        bool alreadyExist = rezultati.Contains(br);
+                        if (!alreadyExist)
+                            rezultati.Add(br);
+
+                    }
+                    rezultati.Sort();
+                    rezultati.Reverse();
+                    if (rezultati.Count() == 0)
+                    {
+                        label1.Text = "Score: ";
+                    }
+                    else if (rezultati.Count() == 1)
+                    {
+                        label1.Text = "Prvo mjesto:" + rezultati[0];
+
+                    }
+                    else if (rezultati.Count() == 2)
+                    {
+                        label1.Text = "Prvo mjesto:" + rezultati[0] + "\nDrugo mjesto" + rezultati[1];
+                    }
+                    else
+                    {
+                        label1.Text = "Prvo mjesto: " + rezultati[0] + "\nDrugo mjesto: " + rezultati[1] + "\nTreće mjesto : " + rezultati[2];
+                    }
+             }
+            Wait(7);
         }
 
         /* Scripts */
@@ -681,6 +715,7 @@ namespace OTTER
                     lblKonacniBodovi.Invoke((MethodInvoker)(() => lblKonacniBodovi.Visible = false));
                     lblZetoni.Invoke((MethodInvoker)(() => lblZetoni.Visible = true));
                     lblVrijeme.Invoke((MethodInvoker)(() => lblVrijeme.Visible = true));
+
 
                     Game.StartScript(Priprema);
                     break;
@@ -713,7 +748,6 @@ namespace OTTER
         {
             while (START)
             {
-
                 lblZetoni.Invoke((MethodInvoker)(() => lblZetoni.Text = Staticka.Zetoni + paco.SkupljeniZetoni.ToString()));
 
                 if (paco.Zdravlje == 0)
@@ -763,6 +797,7 @@ namespace OTTER
                 }
                 Game.StartScript(PrikazZivota);
                 paco.RacunajRezultat();
+                
             }
             return 0;
         }
@@ -1008,6 +1043,8 @@ namespace OTTER
             }
             return 0;
         }
+
+
         private int PrviDio()
         {
             while (START)
@@ -1016,6 +1053,8 @@ namespace OTTER
                 {
                     Game.StartScript(IspaliSrce);
                     paco.VratiZetoneBezUdarca();
+                        
+
                 }
                 else
                 {
@@ -1086,11 +1125,17 @@ namespace OTTER
                 lblKonacniBodovi.Invoke((MethodInvoker)(() => lblKonacniBodovi.Visible = true));
                 lblKonacniBodovi.Invoke((MethodInvoker)(() => lblKonacniBodovi.Text = Staticka.Ukupno + Math.Round(paco.UkupniBodovi, 5).ToString() + " BTC"));
 
+                using (StreamWriter sw = File.AppendText("dat.txt"))
+                {
+                    sw.WriteLine( Math.Round(paco.UkupniBodovi, 5).ToString());
+                }
                 Wait(7);
                 Application.Restart();
                 break;
+
             }
             return 0;
+
         }
 
         /* ------------ GAME CODE END ------------ */

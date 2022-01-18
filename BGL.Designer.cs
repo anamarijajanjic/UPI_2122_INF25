@@ -37,6 +37,7 @@
             this.lblVrijeme = new System.Windows.Forms.Label();
             this.lblZetoni = new System.Windows.Forms.Label();
             this.lblKonacniBodovi = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // syncRate
@@ -45,7 +46,7 @@
             this.syncRate.BackColor = System.Drawing.Color.Transparent;
             this.syncRate.Location = new System.Drawing.Point(12, 394);
             this.syncRate.Name = "syncRate";
-            this.syncRate.Size = new System.Drawing.Size(71, 52);
+            this.syncRate.Size = new System.Drawing.Size(85, 61);
             this.syncRate.TabIndex = 0;
             this.syncRate.Text = "60";
             this.syncRate.Visible = false;
@@ -67,7 +68,7 @@
             this.lblVrijeme.Font = new System.Drawing.Font("Consolas", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblVrijeme.Location = new System.Drawing.Point(404, 394);
             this.lblVrijeme.Name = "lblVrijeme";
-            this.lblVrijeme.Size = new System.Drawing.Size(0, 51);
+            this.lblVrijeme.Size = new System.Drawing.Size(0, 61);
             this.lblVrijeme.TabIndex = 1;
             // 
             // lblZetoni
@@ -77,7 +78,7 @@
             this.lblZetoni.Font = new System.Drawing.Font("Consolas", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblZetoni.Location = new System.Drawing.Point(12, 394);
             this.lblZetoni.Name = "lblZetoni";
-            this.lblZetoni.Size = new System.Drawing.Size(0, 51);
+            this.lblZetoni.Size = new System.Drawing.Size(0, 61);
             this.lblZetoni.TabIndex = 2;
             // 
             // lblKonacniBodovi
@@ -87,16 +88,27 @@
             this.lblKonacniBodovi.Font = new System.Drawing.Font("Consolas", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblKonacniBodovi.Location = new System.Drawing.Point(156, 433);
             this.lblKonacniBodovi.Name = "lblKonacniBodovi";
-            this.lblKonacniBodovi.Size = new System.Drawing.Size(0, 47);
+            this.lblKonacniBodovi.Size = new System.Drawing.Size(0, 56);
             this.lblKonacniBodovi.TabIndex = 3;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(55, 20);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Score:";
             // 
             // BGL
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(26F, 52F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(31F, 61F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(700, 498);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.lblKonacniBodovi);
             this.Controls.Add(this.lblZetoni);
             this.Controls.Add(this.lblVrijeme);
@@ -131,6 +143,7 @@
         private System.Windows.Forms.Label lblVrijeme;
         private System.Windows.Forms.Label lblZetoni;
         private System.Windows.Forms.Label lblKonacniBodovi;
+        private System.Windows.Forms.Label label1;
     }
 }
 
